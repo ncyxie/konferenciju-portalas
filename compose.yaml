@@ -3,7 +3,7 @@ services:
     build:
       context: .
       args:
-        SHARED_GID: ${SHARED_GID}
+        SHARED_GID: ${SHARED_GID:-0}
     ports:
       - "8080:80"
     volumes:
