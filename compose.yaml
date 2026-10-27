@@ -1,6 +1,9 @@
 services:
   web:
-    build: .
+    build:
+      context: .
+      args:
+        SHARED_GID: ${SHARED_GID}
     ports:
       - "8080:80"
     volumes:
