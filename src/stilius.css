@@ -1,0 +1,116 @@
+body
+{
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+    background-color: #fafafa;
+    color: #222;
+    line-height: 1.5;
+}
+
+h1
+{
+    color: #23456b;
+}
+
+nav
+{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #e8edf3;
+    padding: 12px;
+    margin: 20px 0;
+}
+
+.prisijunges
+{
+    margin-left: auto;
+}
+
+label
+{
+    display: block;
+    margin-bottom: 5px;
+}
+
+input
+{
+    padding: 7px;
+}
+
+button
+{
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.klaida
+{
+    color: #b00020;
+}
+
+.sekme
+{
+    color: #1b7a2f;
+}
+
+article
+{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+
+th, td
+{
+    border: 1px solid #aaa;
+    padding: 8px 12px;
+}
+
+.paieskos-forma
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    max-width: 650px;
+}
+
+.paieskos-forma p
+{
+    margin: 0;
+}
+
+.paieskos-forma input,
+.paieskos-forma select
+{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.formos-veiksmai
+{
+    grid-column: 1 / 3;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+@media (max-width: 600px)
+{
+    .paieskos-forma
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .formos-veiksmai
+    {
+        grid-column: 1;
+    }
+}
