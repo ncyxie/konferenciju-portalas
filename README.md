@@ -2,64 +2,64 @@
 
 Konferencijų organizavimo portalas – internetinė sistema, skirta konferencijų informacijos peržiūrai, patalpų paieškai ir rezervacijų valdymui. Sistema leidžia organizatoriams ieškoti tinkamų patalpų pagal laiką, talpą ir įrangą, pateikti rezervacijos prašymus, o administratoriams – juos patvirtinti arba atmesti.
 
-Projektas kuriamas naudojant **PHP, MySQL, HTML ir CSS**. Programos paleidimui naudojamas **Docker**.
+Projektas kuriamas naudojant **PHP, MySQL, HTML ir CSS**. Sistemos paleidimui naudojamas **Docker**.
 
 ## Reikalavimai
 
-Norint paleisti projektą, reikia turėti:
+Projektui paleisti reikalinga:
 
 - Docker su Docker Compose
-- Git (projekto atsisiuntimui)
+- Git
 
 ## Diegimas
 
-Šiuos veiksmus reikia atlikti pirmą kartą diegiant projektą.
+Pradinį paruošimą atlikti vieną kartą. Toliau pateiktos komandos skirtos **Linux terminalui**.
 
-**1. Atsisiųskite projektą:**
+**Atsisiųsti projektą:**
 
 ```bash
 git clone https://github.com/ncyxie/konferenciju-portalas.git
 cd konferenciju-portalas
 ```
 
-**2. Sukurkite aplinkos konfigūracijos failą:**
+**Sukurti aplinkos konfigūracijos failą:**
 
 ```bash
 cp .env.example .env
 ```
 
-Faile `.env` pakeiskite pavyzdinius MySQL slaptažodžius pasirinktais slaptažodžiais.
+Faile `.env` nurodyti pasirinktus MySQL slaptažodžius. Naudojant „VirtualBox“ bendrinamą aplanką, prireikus nustatyti `SHARED_GID` reikšmę pagal aplanko grupės ID.
 
-**3. Sukurkite ir paleiskite Docker konteinerius:**
+**Sukurti ir paleisti Docker konteinerius:**
 
 ```bash
 docker compose up -d --build
 ```
 
-Pirmą kartą inicializuojant tuščią duomenų bazę, automatiškai vykdomi `db/schema.sql` ir `db/seed.sql` failai, sukuriantys lenteles ir įkeliantys demonstracinius duomenis.
+Pirmą kartą inicializuojant tuščią duomenų bazę, automatiškai vykdomi `db/schema.sql` ir `db/seed.sql` failai, skirti lentelėms sukurti ir demonstraciniams duomenims įkelti.
 
 ## Paleidimas
 
-Jeigu projektas jau įdiegtas, atidarykite terminalą projekto aplanke ir vykdykite:
+Jau įdiegto projekto aplanke paleisti Docker konteinerius:
 
 ```bash
 docker compose up -d
 ```
 
-Sistemą galima pasiekti naršyklėje:
+Sistemą atidaryti naršyklėje:
 
 - **Konferencijų portalas:** http://localhost:8080
 - **phpMyAdmin:** http://localhost:8081
 
 ## Sustabdymas
 
-Norėdami sustabdyti Docker konteinerius, vykdykite:
+Sustabdyti Docker konteinerius:
 
 ```bash
 docker compose down
 ```
 
-Duomenų bazės duomenys išsaugomi Docker tome, todėl kitą kartą paleidus projektą jų kurti iš naujo nereikia.
+Duomenų bazės duomenys išsaugomi Docker tome ir lieka prieinami kitą kartą paleidus projektą.
 
 ## Demonstraciniai prisijungimai
 
@@ -69,7 +69,7 @@ Duomenų bazės duomenys išsaugomi Docker tome, todėl kitą kartą paleidus pr
 | Organizatorius | organizatorius@example.test | Demo1234! |
 | Administratorius | admin@example.test | Demo1234! |
 
-Šios paskyros skirtos tik sistemos demonstravimui.
+Demonstracines paskyras naudoti tik sistemos testavimui ir pristatymui.
 
 ## Pagrindinės funkcijos
 
