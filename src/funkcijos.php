@@ -164,3 +164,14 @@ function patalpaTuriIranga($pdo, $patalposId, $irangosId)
 
     return false;
 }
+
+// Prideda nulį priekyje, jei skaičius vienženklis.
+function dviSkaitmenys($skaicius)
+{
+    if ($skaicius < 10)
+    {
+        return "0" . $skaicius;
+    }
+
+    return "" . $skaicius;
+}

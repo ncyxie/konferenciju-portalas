@@ -35,15 +35,24 @@ label
     margin-bottom: 5px;
 }
 
-input
+input,
+select
 {
     padding: 7px;
+    font-family: inherit;
+    font-size: inherit;
+    border: 1px solid #888;
+    border-radius: 3px;
+    box-sizing: border-box;
+    background-color: #fff;
 }
 
 button
 {
     padding: 8px 16px;
     cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 .klaida
@@ -72,6 +81,36 @@ th, td
 {
     border: 1px solid #aaa;
     padding: 8px 12px;
+}
+
+.tvarkarastis
+{
+    width: 100%;
+    margin-top: 10px;
+    font-size: 13px;
+    table-layout: fixed;
+}
+
+.tvarkarastis th,
+.tvarkarastis td
+{
+    padding: 4px;
+    text-align: center;
+}
+
+.tvarkarastis th:first-child
+{
+    width: 60px;
+}
+
+.tvarkarastis td div
+{
+    margin: 2px 0;
+}
+
+.uzimta
+{
+    background-color: #ccc;
 }
 
 .paieskos-forma

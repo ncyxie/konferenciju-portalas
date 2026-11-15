@@ -24,7 +24,7 @@ $sql = "SELECT id, pavadinimas, talpa FROM patalpa WHERE aktyvi = 1 ORDER BY pav
 $uzklausa = $pdo->query($sql);
 $visosPatalpos = $uzklausa->fetchAll();
 
-// Numatytosios reikšmės: rytojus, 09:00–10:00.
+// Numatytosios paieškos reikšmės (rytojus, 09:00–10:00).
 $data = date("Y-m-d", strtotime("+1 day"));
 $pradzia = "09:00";
 $pabaiga = "10:00";
@@ -305,34 +305,38 @@ require "antraste.php";
     ?>
 
     <script>
-    // Pakeitus pradžios laiką, pabaigos laikas nustatomas valanda vėliau.
+    // Pakeitus pradžią, pabaiga nustatoma valanda vėliau.
     function nustatytiPabaiga()
     {
-        var pradzia = document.getElementById("pradzia").value;   // pvz. "09:30"
+        var pradzia = document.getElementById("pradzia").value;
 
         if (pradzia === "")
         {
             return;
         }
 
-        // Padalina per dvitaškį: "09:30" → "09" ir "30".
+        // Padalina per dvitaškį.
         var dalys = pradzia.split(":");
-        var valandos = Number(dalys[0]) + 1;
+        var valandos = Number(dalys[0]);
         var minutes = dalys[1];
 
-        // Po 23 valandos nebėra, todėl pabaiga paliekama naudotojui.
+        valandos = valandos + 1;
+
+        // Po 23 val. pabaigos nekeičia, nes 24:00 nėra.
         if (valandos > 23)
         {
             return;
         }
 
-        // Prideda nulį priekyje: 9 → "09".
+        // Prideda nulį priekyje, nes laikas turi būti VV:MM.
         if (valandos < 10)
         {
             valandos = "0" + valandos;
         }
 
-        document.getElementById("pabaiga").value = valandos + ":" + minutes;
+        var pabaiga = valandos + ":" + minutes;
+
+        document.getElementById("pabaiga").value = pabaiga;
     }
     </script>
 </body>
