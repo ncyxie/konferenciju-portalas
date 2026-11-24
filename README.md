@@ -38,6 +38,13 @@ docker compose up -d --build
 
 Pirmą kartą inicializuojant tuščią duomenų bazę, automatiškai vykdomi `db/schema.sql` ir `db/seed.sql` failai, skirti lentelėms sukurti ir demonstraciniams duomenims įkelti.
 
+Pakeitus šiuos failus, duomenų bazę perkurti (esami duomenys bus ištrinti):
+
+```bash
+docker compose down -v
+docker compose up -d --build
+```
+
 ## Paleidimas
 
 Jau įdiegto projekto aplanke paleisti Docker konteinerius:
@@ -65,9 +72,9 @@ Duomenų bazės duomenys išsaugomi Docker tome ir lieka prieinami kitą kartą 
 
 | Rolė | El. paštas | Slaptažodis |
 |---|---|---|
-| Dalyvis | dalyvis@example.test | Demo1234! |
-| Organizatorius | organizatorius@example.test | Demo1234! |
-| Administratorius | admin@example.test | Demo1234! |
+| Dalyvis | dalyvis@ktu.lt | demo1234 |
+| Organizatorius | org@ktu.lt | demo1234 |
+| Administratorius | admin@ktu.lt | demo1234 |
 
 Demonstracines paskyras naudoti tik sistemos testavimui ir pristatymui.
 
