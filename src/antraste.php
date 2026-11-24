@@ -22,6 +22,11 @@
         {
             $role = $_SESSION["role"];
 
+            if ($role === "registruotas")
+            {
+                echo '<a href="sekcijos.php">Sekcijos</a>';
+            }
+
             if ($role === "organizatorius")
             {
                 echo '<a href="patalpos.php">Patalpos</a>';

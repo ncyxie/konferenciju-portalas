@@ -175,3 +175,40 @@ function dviSkaitmenys($skaicius)
 
     return "" . $skaicius;
 }
+
+// Grąžina, kiek dalyvių užsiregistravo į sekciją.
+function uzregistruotuSkaicius($pdo, $sekcijosId)
+{
+    $sql = "SELECT COUNT(*)
+            FROM dalyvio_registracija
+            WHERE fk_registracija_sekcija = :sekcija";
+
+    $uzklausa = $pdo->prepare($sql);
+    $uzklausa->execute([":sekcija" => $sekcijosId]);
+
+    return $uzklausa->fetchColumn();
+}
+
+// Tikrina, ar naudotojas jau užsiregistravęs į sekciją.
+function naudotojasUzsiregistraves($pdo, $naudotojoId, $sekcijosId)
+{
+    $sql = "SELECT COUNT(*)
+            FROM dalyvio_registracija
+            WHERE fk_registracija_naudotojas = :naudotojas
+            AND fk_registracija_sekcija = :sekcija";
+
+    $uzklausa = $pdo->prepare($sql);
+    $uzklausa->execute([
+        ":naudotojas" => $naudotojoId,
+        ":sekcija" => $sekcijosId
+    ]);
+
+    $kiekis = $uzklausa->fetchColumn();
+
+    if ($kiekis > 0)
+    {
+        return true;
+    }
+
+    return false;
+}

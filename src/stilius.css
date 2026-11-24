@@ -153,3 +153,9 @@ th, td
         grid-column: 1;
     }
 }
+
+/* Data ir laikas nelaužomi į kelias eilutes. */
+.nelauzyti
+{
+    white-space: nowrap;
+}
