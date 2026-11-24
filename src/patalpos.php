@@ -3,14 +3,14 @@ session_start();
 require "db.php";
 require "funkcijos.php";
 
-// Tik organizatoriui ir administratoriui.
+// Tik organizatoriui.
 if (!isset($_SESSION["naudotojo_id"]))
 {
     header("Location: prisijungti.php");
     exit;
 }
 
-if ($_SESSION["role"] !== "organizatorius" && $_SESSION["role"] !== "administratorius")
+if ($_SESSION["role"] !== "organizatorius")
 {
     echo "Neturite teisės atidaryti šio puslapio.";
     exit;

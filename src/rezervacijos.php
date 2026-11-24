@@ -39,10 +39,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
     $pdo->beginTransaction();
 
     // Užrakina prašymą iki transakcijos pabaigos.
-    $sql = "SELECT fk_rezervacija_patalpa, data, pradzios_laikas, pabaigos_laikas, klausytoju_kiekis
+    $sql = "SELECT rezervacija.fk_rezervacija_patalpa, rezervacija.fk_rezervacija_naudotojas,
+                   rezervacija.data, rezervacija.pradzios_laikas, rezervacija.pabaigos_laikas,
+                   rezervacija.klausytoju_kiekis, patalpa.pavadinimas
             FROM rezervacija
-            WHERE id = :id
-            AND busena = 'laukiama'
+            JOIN patalpa ON patalpa.id = rezervacija.fk_rezervacija_patalpa
+            WHERE rezervacija.id = :id
+            AND rezervacija.busena = 'laukiama'
             FOR UPDATE";
 
     $uzklausa = $pdo->prepare($sql);
@@ -118,6 +121,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 
             $uzklausa = $pdo->prepare($sql);
             $uzklausa->execute([":id" => $rezervacijosId]);
+
+            // Siunčia vidinį pranešimą rezervaciją pateikusiam naudotojui.
+            $pradziosLaikas = substr($rezervacija["pradzios_laikas"], 0, 5);
+            $pabaigosLaikas = substr($rezervacija["pabaigos_laikas"], 0, 5);
+
+            $tekstas = "Patvirtinta rezervacija: " . $rezervacija["pavadinimas"];
+            $tekstas = $tekstas . ", " . $rezervacija["data"];
+            $tekstas = $tekstas . " " . $pradziosLaikas . "–" . $pabaigosLaikas . ".";
+
+            $sql = "INSERT INTO pranesimas (tekstas, sukurimo_data, laikas, fk_pranesimas_naudotojas)
+                    VALUES (:tekstas, :data, :laikas, :naudotojas)";
+
+            $uzklausa = $pdo->prepare($sql);
+            $uzklausa->execute([
+                ":tekstas" => $tekstas,
+                ":data" => date("Y-m-d"),
+                ":laikas" => date("H:i:s"),
+                ":naudotojas" => $rezervacija["fk_rezervacija_naudotojas"]
+            ]);
 
             $pdo->commit();
 

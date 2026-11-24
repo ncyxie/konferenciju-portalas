@@ -22,14 +22,16 @@
         {
             $role = $_SESSION["role"];
 
-            if ($role === "organizatorius" || $role === "administratorius")
+            if ($role === "organizatorius")
             {
                 echo '<a href="patalpos.php">Patalpos</a>';
                 echo '<a href="uzimtumas.php">Užimtumas</a>';
+                echo '<a href="pranesimai.php">Pranešimai</a>';
             }
 
             if ($role === "administratorius")
             {
+                echo '<a href="uzimtumas.php">Užimtumas</a>';
                 echo '<a href="rezervacijos.php">Prašymai</a>';
             }
 
