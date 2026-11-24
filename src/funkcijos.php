@@ -212,3 +212,27 @@ function naudotojasUzsiregistraves($pdo, $naudotojoId, $sekcijosId)
 
     return false;
 }
+
+// Tikrina, ar el. paštas jau priklauso kitam naudotojui.
+function elPastasUzimtas($pdo, $elPastas, $naudotojoId)
+{
+    $sql = "SELECT COUNT(*)
+            FROM naudotojas
+            WHERE el_pastas = :el_pastas
+            AND id <> :id";
+
+    $uzklausa = $pdo->prepare($sql);
+    $uzklausa->execute([
+        ":el_pastas" => $elPastas,
+        ":id" => $naudotojoId
+    ]);
+
+    $kiekis = $uzklausa->fetchColumn();
+
+    if ($kiekis > 0)
+    {
+        return true;
+    }
+
+    return false;
+}

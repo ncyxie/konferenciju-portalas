@@ -159,3 +159,10 @@ th, td
 {
     white-space: nowrap;
 }
+
+/* Mygtukas toje pačioje eilutėje kaip nuoroda. */
+.eilutes-forma
+{
+    display: inline;
+    margin-left: 15px;
+}

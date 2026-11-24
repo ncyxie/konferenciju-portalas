@@ -38,6 +38,7 @@
             {
                 echo '<a href="uzimtumas.php">Užimtumas</a>';
                 echo '<a href="rezervacijos.php">Prašymai</a>';
+                echo '<a href="naudotojai.php">Naudotojai</a>';
             }
 
             echo '<span class="prisijunges">' . htmlspecialchars($_SESSION["vardas"]) . ' (' . $role . ')</span>';
