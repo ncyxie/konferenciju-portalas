@@ -111,59 +111,61 @@ require "antraste.php";
 
     <p><a href="naudotojas.php">Sukurti naują naudotoją</a></p>
 
-    <table>
-        <tr>
-            <th>Vardas ir pavardė</th>
-            <th>El. paštas</th>
-            <th>Rolė</th>
-            <th>Būsena</th>
-            <th>Veiksmai</th>
-        </tr>
+    <div class="lentele">
+        <table>
+            <tr>
+                <th>Vardas ir pavardė</th>
+                <th>El. paštas</th>
+                <th>Rolė</th>
+                <th>Būsena</th>
+                <th>Veiksmai</th>
+            </tr>
 
-        <?php
-        foreach ($naudotojai as $naudotojas)
-        {
-            $vardasPavarde = $naudotojas["vardas"] . " " . $naudotojas["pavarde"];
-
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($vardasPavarde) . "</td>";
-            echo "<td>" . htmlspecialchars($naudotojas["el_pastas"]) . "</td>";
-            echo "<td>" . htmlspecialchars($naudotojas["role"]) . "</td>";
-
-            if ($naudotojas["aktyvus"] == 1)
+            <?php
+            foreach ($naudotojai as $naudotojas)
             {
-                echo "<td>Aktyvus</td>";
-            }
-            else
-            {
-                echo "<td>Išjungtas</td>";
-            }
+                $vardasPavarde = $naudotojas["vardas"] . " " . $naudotojas["pavarde"];
 
-            echo '<td class="nelauzyti">';
-            echo '<a href="naudotojas.php?id=' . $naudotojas["id"] . '">Redaguoti</a> ';
-
-            // Savo paskyrai mygtukas nerodomas.
-            if ($naudotojas["id"] != $_SESSION["naudotojo_id"])
-            {
-                echo '<form method="post" action="naudotojai.php" class="eilutes-forma">';
-                echo '<input type="hidden" name="naudotojo_id" value="' . $naudotojas["id"] . '">';
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($vardasPavarde) . "</td>";
+                echo "<td>" . htmlspecialchars($naudotojas["el_pastas"]) . "</td>";
+                echo "<td>" . htmlspecialchars($naudotojas["role"]) . "</td>";
 
                 if ($naudotojas["aktyvus"] == 1)
                 {
-                    echo '<button type="submit" name="veiksmas" value="isjungti">Išjungti</button>';
+                    echo "<td>Aktyvus</td>";
                 }
                 else
                 {
-                    echo '<button type="submit" name="veiksmas" value="ijungti">Įjungti</button>';
+                    echo "<td>Išjungtas</td>";
                 }
 
-                echo '</form>';
-            }
+                echo '<td class="nelauzyti">';
+                echo '<a href="naudotojas.php?id=' . $naudotojas["id"] . '">Redaguoti</a> ';
 
-            echo "</td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
+                // Savo paskyrai mygtukas nerodomas.
+                if ($naudotojas["id"] != $_SESSION["naudotojo_id"])
+                {
+                    echo '<form method="post" action="naudotojai.php" class="eilutes-forma">';
+                    echo '<input type="hidden" name="naudotojo_id" value="' . $naudotojas["id"] . '">';
+
+                    if ($naudotojas["aktyvus"] == 1)
+                    {
+                        echo '<button type="submit" name="veiksmas" value="isjungti">Išjungti</button>';
+                    }
+                    else
+                    {
+                        echo '<button type="submit" name="veiksmas" value="ijungti">Įjungti</button>';
+                    }
+
+                    echo '</form>';
+                }
+
+                echo "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </table>
+    </div>
 </body>
 </html>

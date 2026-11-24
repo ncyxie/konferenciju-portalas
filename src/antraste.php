@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="stilius.css">
 </head>
 <body>
-    <h1>Konferencijų organizavimo portalas</h1>
-    <p>Autorius: Mantas Gaižutis</p>
+    <header>
+        <h1>Konferencijų organizavimo portalas</h1>
+        <p>Autorius: Mantas Gaižutis</p>
+    </header>
 
     <nav>
         <a href="index.php">Pradžia</a>
@@ -41,8 +43,11 @@
                 echo '<a href="naudotojai.php">Naudotojai</a>';
             }
 
-            echo '<span class="prisijunges">' . htmlspecialchars($_SESSION["vardas"]) . ' (' . $role . ')</span>';
+            // Vardas ir „Atsijungti“ – kartu, dešinėje.
+            echo '<span class="prisijunges">';
+            echo htmlspecialchars($_SESSION["vardas"]) . ' (' . $role . ')';
             echo '<a href="atsijungti.php">Atsijungti</a>';
+            echo '</span>';
         }
         else
         {

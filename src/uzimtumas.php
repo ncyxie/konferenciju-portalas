@@ -144,6 +144,7 @@ require "antraste.php";
         echo "<p>Šią savaitę patvirtintų rezervacijų nėra.</p>";
     }
 
+    echo '<div class="lentele">';
     echo '<table class="tvarkarastis">';
 
     // Antraštė: dienos su datomis.
@@ -179,8 +180,8 @@ require "antraste.php";
                     && $rezervacija["pradzios_laikas"] < $valandosPabaiga
                     && $rezervacija["pabaigos_laikas"] > $valandosPradzia)
                 {
-                    $laikas = substr($rezervacija["pradzios_laikas"], 0, 5) . "–"
-                        . substr($rezervacija["pabaigos_laikas"], 0, 5);
+                    $pradziosLaikas = substr($rezervacija["pradzios_laikas"], 0, 5);
+                    $pabaigosLaikas = substr($rezervacija["pabaigos_laikas"], 0, 5);
 
                     // Kiekviena rezervacija – atskirame bloke.
                     $langelioTekstas = $langelioTekstas . "<div>";
@@ -191,7 +192,7 @@ require "antraste.php";
                         $langelioTekstas = $langelioTekstas . "<strong>" . htmlspecialchars($rezervacija["pavadinimas"]) . "</strong><br>";
                     }
 
-                    $langelioTekstas = $langelioTekstas . $laikas . "</div>";
+                    $langelioTekstas = $langelioTekstas . $pradziosLaikas . "–" . $pabaigosLaikas . "</div>";
                 }
             }
 
@@ -209,6 +210,7 @@ require "antraste.php";
     }
 
     echo "</table>";
+    echo "</div>";
     ?>
 </body>
 </html>

@@ -74,28 +74,30 @@ $puslapioPavadinimas = "Prisijungimas";
 require "antraste.php";
 ?>
 
-    <h2>Prisijungimas</h2>
+    <div class="prisijungimo-langas">
+        <h2>Prisijungimas</h2>
 
-    <?php
-    if ($klaida !== "")
-    {
-        echo '<p class="klaida">' . htmlspecialchars($klaida) . '</p>';
-    }
-    ?>
+        <?php
+        if ($klaida !== "")
+        {
+            echo '<p class="klaida">' . htmlspecialchars($klaida) . '</p>';
+        }
+        ?>
 
-    <form method="post" action="prisijungti.php">
-        <p>
-            <label for="el_pastas">El. paštas:</label>
-            <input type="email" id="el_pastas" name="el_pastas" required
-                   value="<?php echo htmlspecialchars($elPastas); ?>">
-        </p>
+        <form method="post" action="prisijungti.php">
+            <p>
+                <label for="el_pastas">El. paštas:</label>
+                <input type="email" id="el_pastas" name="el_pastas" required
+                       value="<?php echo htmlspecialchars($elPastas); ?>">
+            </p>
 
-        <p>
-            <label for="slaptazodis">Slaptažodis:</label>
-            <input type="password" id="slaptazodis" name="slaptazodis" required>
-        </p>
+            <p>
+                <label for="slaptazodis">Slaptažodis:</label>
+                <input type="password" id="slaptazodis" name="slaptazodis" required>
+            </p>
 
-        <button type="submit">Prisijungti</button>
-    </form>
+            <button type="submit">Prisijungti</button>
+        </form>
+    </div>
 </body>
 </html>

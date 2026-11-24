@@ -143,14 +143,6 @@ if ($ieskota && $pradinePatalpaId !== 0)
     $rodytiAtstuma = true;
 }
 
-// Rezervuoja tik organizatorius.
-$galiRezervuoti = false;
-
-if ($ieskota && $_SESSION["role"] === "organizatorius")
-{
-    $galiRezervuoti = true;
-}
-
 $puslapioPavadinimas = "Patalpos";
 require "antraste.php";
 ?>
@@ -253,6 +245,7 @@ require "antraste.php";
     }
     else
     {
+        echo '<div class="lentele">';
         echo "<table>";
         echo "<tr>";
         echo "<th>Patalpa</th>";
@@ -263,7 +256,8 @@ require "antraste.php";
             echo "<th>Sąlyginis atstumas</th>";
         }
 
-        if ($galiRezervuoti)
+        // Prašymą galima pateikti tik po paieškos.
+        if ($ieskota)
         {
             echo "<th>Veiksmas</th>";
         }
@@ -281,7 +275,7 @@ require "antraste.php";
                 echo "<td>" . $patalpa["atstumas"] . "</td>";
             }
 
-            if ($galiRezervuoti)
+            if ($ieskota)
             {
                 // Paieškos duomenys – paslėptuose laukuose.
                 echo "<td>";
@@ -301,6 +295,7 @@ require "antraste.php";
         }
 
         echo "</table>";
+        echo "</div>";
     }
     ?>
 

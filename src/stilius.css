@@ -9,7 +9,26 @@ body
     line-height: 1.5;
 }
 
+/* Pavadinimas ir autorius centre. */
+header
+{
+    text-align: center;
+}
+
 h1
+{
+    color: #23456b;
+    margin-bottom: 5px;
+}
+
+header p
+{
+    margin-top: 0;
+    color: #555;
+}
+
+/* Visos nuorodos tos pačios spalvos kaip meniu. */
+a
 {
     color: #23456b;
 }
@@ -17,6 +36,7 @@ h1
 nav
 {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 20px;
     background-color: #e8edf3;
@@ -24,9 +44,26 @@ nav
     margin: 20px 0;
 }
 
+nav a
+{
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover
+{
+    text-decoration: underline;
+}
+
+/* Prisijungęs naudotojas – dešinėje. */
 .prisijunges
 {
     margin-left: auto;
+}
+
+.prisijunges a
+{
+    margin-left: 20px;
 }
 
 label
@@ -47,40 +84,76 @@ select
     background-color: #fff;
 }
 
+/* Formos laukai vienodo pločio. */
+form p input,
+form p select
+{
+    width: 300px;
+}
+
 button
 {
     padding: 8px 16px;
     cursor: pointer;
     font-family: inherit;
     font-size: inherit;
+    color: #fff;
+    background-color: #23456b;
+    border: none;
+    border-radius: 3px;
+}
+
+button:hover
+{
+    background-color: #1a3350;
 }
 
 .klaida
 {
     color: #b00020;
+    background-color: #fdecee;
+    padding: 8px 12px;
 }
 
 .sekme
 {
     color: #1b7a2f;
+    background-color: #e6f4ea;
+    padding: 8px 12px;
 }
 
-article
+/* Prisijungimo forma lango centre. */
+.prisijungimo-langas
 {
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
+    max-width: 320px;
+    margin: 40px auto;
+    padding: 10px 30px 30px 30px;
+    background-color: #fff;
+    border: 1px solid #ccc;
 }
 
+.prisijungimo-langas input
+{
+    width: 100%;
+}
+
+/* Lentelės per visą turinio plotį. */
 table
 {
+    width: 100%;
     border-collapse: collapse;
+    background-color: #fff;
 }
 
 th, td
 {
     border: 1px solid #aaa;
     padding: 8px 12px;
+}
+
+th
+{
+    background-color: #e8edf3;
 }
 
 .tvarkarastis
@@ -130,15 +203,21 @@ th, td
 .paieskos-forma select
 {
     width: 100%;
-    box-sizing: border-box;
 }
 
 .formos-veiksmai
 {
     grid-column: 1 / 3;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 20px;
+}
+
+/* Nuoroda nelaužoma į dvi eilutes. */
+.formos-veiksmai a
+{
+    white-space: nowrap;
 }
 
 @media (max-width: 600px)
@@ -151,7 +230,38 @@ th, td
     .formos-veiksmai
     {
         grid-column: 1;
+        gap: 10px 15px;
     }
+
+    h1
+    {
+        font-size: 24px;
+    }
+
+    nav
+    {
+        gap: 12px;
+        font-size: 14px;
+    }
+
+    /* Vardas ir „Atsijungti“ – atskiroje eilutėje. */
+    .prisijunges
+    {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* Tvarkaraštis siaurame ekrane nesuspaudžiamas. */
+    .tvarkarastis
+    {
+        min-width: 700px;
+    }
+}
+
+/* Plati lentelė slenkama į šoną. */
+.lentele
+{
+    overflow-x: auto;
 }
 
 /* Data ir laikas nelaužomi į kelias eilutes. */

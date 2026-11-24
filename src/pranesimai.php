@@ -38,6 +38,7 @@ require "antraste.php";
     }
     else
     {
+        echo '<div class="lentele">';
         echo "<table>";
         echo "<tr>";
         echo "<th>Data</th>";
@@ -55,6 +56,7 @@ require "antraste.php";
         }
 
         echo "</table>";
+        echo "</div>";
     }
     ?>
 </body>

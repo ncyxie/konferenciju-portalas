@@ -173,7 +173,7 @@ function dviSkaitmenys($skaicius)
         return "0" . $skaicius;
     }
 
-    return "" . $skaicius;
+    return $skaicius;
 }
 
 // Grąžina, kiek dalyvių užsiregistravo į sekciją.

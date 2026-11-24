@@ -211,6 +211,7 @@ require "antraste.php";
     }
     else
     {
+        echo '<div class="lentele">';
         echo "<table>";
         echo "<tr>";
         echo "<th>Organizatorius</th>";
@@ -246,6 +247,7 @@ require "antraste.php";
         }
 
         echo "</table>";
+        echo "</div>";
     }
     ?>
 </body>
