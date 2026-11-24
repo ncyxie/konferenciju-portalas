@@ -1,74 +1,22 @@
 <?php
 session_start();
-require "db.php";
-
-$sql = "SELECT id, pavadinimas, aprasymas
-        FROM konferencija
-        ORDER BY id DESC";
-
-$uzklausa = $pdo->query($sql);
-$konferencijos = $uzklausa->fetchAll();
 
 $puslapioPavadinimas = "Konferencijų organizavimo portalas";
 require "antraste.php";
 ?>
 
-    <h2>Konferencijos</h2>
+    <h2>Pradžia</h2>
+
+    <p>Portale organizatoriai rezervuoja patalpas konferencijoms, o dalyviai registruojasi į konferencijų sekcijas.</p>
 
     <?php
-    if (count($konferencijos) === 0)
+    if (isset($_SESSION["naudotojo_id"]))
     {
-        echo "<p>Konferencijų kol kas nėra.</p>";
+        echo "<p>Sveiki, " . htmlspecialchars($_SESSION["vardas"]) . ". Pasirinkite norimą veiksmą meniu.</p>";
     }
-
-    foreach ($konferencijos as $konferencija)
+    else
     {
-        echo "<article>";
-        echo "<h3>" . htmlspecialchars($konferencija["pavadinimas"]) . "</h3>";
-
-        // Aprašymas neprivalomas.
-        if ($konferencija["aprasymas"] !== null && $konferencija["aprasymas"] !== "")
-        {
-            echo "<p>" . htmlspecialchars($konferencija["aprasymas"]) . "</p>";
-        }
-
-        // Konferencijos sekcijos.
-        $sql = "SELECT pavadinimas, aprasymas
-                FROM sekcija
-                WHERE fk_sekcija_konferencija = :konferencija
-                ORDER BY id";
-
-        $uzklausa = $pdo->prepare($sql);
-        $uzklausa->execute([":konferencija" => $konferencija["id"]]);
-        $sekcijos = $uzklausa->fetchAll();
-
-        echo "<h4>Sekcijos</h4>";
-
-        if (count($sekcijos) === 0)
-        {
-            echo "<p>Sekcijų kol kas nėra.</p>";
-        }
-        else
-        {
-            echo "<ul>";
-
-            foreach ($sekcijos as $sekcija)
-            {
-                echo "<li>";
-                echo "<strong>" . htmlspecialchars($sekcija["pavadinimas"]) . "</strong>";
-
-                if ($sekcija["aprasymas"] !== null && $sekcija["aprasymas"] !== "")
-                {
-                    echo " – " . htmlspecialchars($sekcija["aprasymas"]);
-                }
-
-                echo "</li>";
-            }
-
-            echo "</ul>";
-        }
-
-        echo "</article>";
+        echo '<p>Norėdami naudotis sistema, <a href="prisijungti.php">prisijunkite</a>.</p>';
     }
     ?>
 </body>
